@@ -1,0 +1,27 @@
+#######################################
+# Syntax Coloring Map Espobj
+#######################################
+Max471	KEYWORD1
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+getmVolt	KEYWORD2
+getmAmp	KEYWORD2
+getmWatt	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+MODE_STATION	LITERAL1
+MODE_SOFTAP	LITERAL1
+MODE_AP_AND_STATION	LITERAL1
+
+GOT_IP	LITERAL1
+CONNECTED	LITERAL1
+DISCONNECTED	LITERAL1
+WIFI_FAILED	LITERAL1
+
+TCP	LITERAL1
+UDP	LITERAL1
+

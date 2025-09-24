@@ -1,0 +1,43 @@
+名稱重疊的腳位----要同時給high才會都high----
+又或者說，不應該同時設定說要"使用該腳位"
+不然一高一低會變0.75V  那是直接短路該腳位!!!(短路電流70mA呵呵)
+因為有定義output但未定義狀態的腳位，會莫認為LOW並且具有接地的作用
+
+可以透過
+  CLKPR=0x80;
+  CLKPR=0x06;//32分之一
+來降頻!
+而且滿準的，並且不受VIN影響
+
+使用
+#include <avr/sleep.h>
+
+void setup() {
+  CLKPR = 0x80;
+  CLKPR = 0x01;
+}
+
+void loop() {                
+  set_sleep_mode(SLEEP_MODE_PWR_DOWN);
+  sleep_enable();
+  sleep_cpu();
+}
+進入的休眠模式仍有1mA的待機電流，移除掉ams1117以後，待機電流剩下0.2mA(2.4V)、0.78mA(3.4V)
+如果關掉ADC和BOD，待機電流剩下0.05ma(2.4V)、0.06ma(3.3V)
+https://github.com/dbuezas/lgt8fx
+有
+Power consumption @ 5v
+Clock	Pro mini style w/o power LED	Pro mini style	Nano style
+32MHz	12.7mA				15.0mA		32.6mA
+16MHz	9.2mA				11.5mA		27.8mA
+8MHz	7.1mA				9.4mA		25.4mA
+4MHz	5.9mA				8.2mA		23.3mA
+2MHz	5.3mA				7.6mA		23.4mA
+1MHz	5.0mA				7.3mA		22.8mA
+
+https://github.com/dbuezas/lgt8fx/blob/master/docs/LGT_MCUs.md
+有記憶體參數
+
+
+serial.print
+
